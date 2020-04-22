@@ -1,10 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 5000;
 const reactApp = require('./build/server').default;
 
-app.use(express.static('build')); // We need it to serve /client.js
-app.use(express.static('public')); // We need it to serve /style.css
+// We need it to serve /client.js & /style.css
+// cors() is necessary to get rid of the any CORS issues, suitable for development env only!
+app.use('/public', cors(), express.static('build'), express.static('public'));
 
 // TODO: uncomment code below:
 // app.get('/microfrontend', (req, res) => {
@@ -15,7 +17,7 @@ app.use(express.static('public')); // We need it to serve /style.css
 //     } catch {
 //         console.warn(`Can't fetch application props from ILC request`);
 //     }
-//     const publicPath = appProps.publicPath || '/';
+//     const publicPath = appProps.publicPath || '/public/';
 //
 //     // More info: https://github.com/namecheap/ilc/blob/master/docs/ilc_app_interface.md#response-interface-app---ilc
 //     res.append('Link', [
@@ -27,9 +29,9 @@ app.use(express.static('public')); // We need it to serve /style.css
 // });
 
 app.get('/', (req, res) => res.send(`
-<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/public/style.css">
 <div id="root">${reactApp()}</div>
-<script src="/client.js"></script>
+<script src="/public/client.js"></script>
 `));
 
 app.listen(port, () =>
