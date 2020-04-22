@@ -1,23 +1,26 @@
-body {
+.game-app {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
-ol, ul {
+.game-app ol,
+.game-app ul {
     padding-left: 30px;
 }
 
-.board-row:after {
+.game-app .board-row:after {
     clear: both;
     content: "";
     display: table;
 }
 
-.status {
+.game-app .status {
     margin-bottom: 10px;
 }
 
-.square {
+.game-app .square {
     background: #fff;
     border: 1px solid #999;
     float: left;
@@ -32,20 +35,15 @@ ol, ul {
     width: 34px;
 }
 
-.square:focus {
+.game-app .square:focus {
     outline: none;
 }
 
-.kbd-navigation .square:focus {
+.game-app .kbd-navigation .square:focus {
     background: #ddd;
 }
 
-.game {
-    display: flex;
-    flex-direction: row;
-}
-
-.game-info {
+.game-app .game-info {
     margin-left: 20px;
 }
 
