@@ -8,7 +8,7 @@ const reactApp = require('./build/server').default;
 // cors() is necessary to get rid of the any CORS issues, suitable for development env only!
 app.use('/public', cors(), express.static('build'), express.static('public'));
 
-// TODO: uncomment code below:
+//TODO: uncomment code below:
 // app.get('/microfrontend', (req, res) => {
 //     let appProps = {};
 //     try {
