@@ -1,0 +1,28 @@
+{
+  "name": "simplereact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node server.js",
+    "build": "webpack --config webpack.js --progress --hide-modules"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "single-spa-react": "^2.14.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "wrapper-webpack-plugin": "^2.1.0"
+  }
+}
