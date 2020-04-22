@@ -13,7 +13,7 @@ app.use('/public', cors(), express.static('build'), express.static('public'));
 //     let appProps = {};
 //     try {
 //         // More info here https://github.com/namecheap/ilc/blob/master/docs/ilc_app_interface.md#input-interface-ilc---app
-//         appProps = JSON.parse(Buffer.from(req.query.routerProps, 'base64').toString('utf-8'));
+//         appProps = JSON.parse(Buffer.from(req.query.appProps, 'base64').toString('utf-8'));
 //     } catch {
 //         console.warn(`Can't fetch application props from ILC request`);
 //     }
