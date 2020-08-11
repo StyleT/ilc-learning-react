@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 import singleSpaReact from 'single-spa-react';
+
+const RootComponent = (props) => (<BrowserRouter basename={props.getCurrentBasePath()}><App/></BrowserRouter>);
 
 const reactLifecycles = singleSpaReact({
     React,
     ReactDOM,
-    rootComponent: App,
+    rootComponent: RootComponent,
     renderType: 'hydrate',
 });
 
