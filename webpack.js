@@ -17,21 +17,19 @@ const wpModule =  {
 };
 
 module.exports = [{
-    entry: path.resolve(__dirname, 'src/client-entry.js'), //TODO: change to 'client-entry.spa.js'
+    entry: path.resolve(__dirname, 'src/client-entry.spa.js'),
     output: {
         filename: 'client.js',
-        //TODO: uncomment code below:
-        // libraryTarget: 'amd',
+        libraryTarget: 'amd',
         path: path.resolve(__dirname, 'build'),
     },
     module: wpModule,
     plugins: [
-        //TODO: uncomment code below:
-        // new WrapperPlugin({
-        //     test: /\.js$/, // only wrap output of bundle files with '.js' extension
-        //     header: '(function(define){\n',
-        //     footer: '\n})((window.ILC && window.ILC.define) || window.define);'
-        // }),
+        new WrapperPlugin({
+            test: /\.js$/, // only wrap output of bundle files with '.js' extension
+            header: '(function(define){\n',
+            footer: '\n})((window.ILC && window.ILC.define) || window.define);'
+        }),
     ],
     devtool: 'source-map',
     mode: 'production',
