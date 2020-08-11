@@ -11,7 +11,7 @@ import SnakeGame from './SnakeGame';
 
 export default () => {
     return (
-        <div>
+        <div className={'ilc-learning-react'}>
             <nav>
                 <ul>
                     <li>
