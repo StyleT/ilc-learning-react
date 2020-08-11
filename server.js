@@ -8,21 +8,17 @@ const reactApp = require('./build/server').default;
 // cors() is necessary to get rid of the any CORS issues, suitable for development env only!
 app.use('/public', cors(), express.static('build'), express.static('public'));
 
+const IlcSdk = require('ilc-server-sdk').default;
+const ilcSdk = new IlcSdk({ publicPath: '/public/' });
 app.get('/microfrontend', (req, res) => {
-    let appProps = {};
-    try {
-        // More info here https://github.com/namecheap/ilc/blob/master/docs/ilc_app_interface.md#input-interface-ilc---app
-        appProps = JSON.parse(Buffer.from(req.query.appProps, 'base64').toString('utf-8'));
-    } catch {
-        console.warn(`Can't fetch application props from ILC request`);
-    }
-    const publicPath = appProps.publicPath || '/public/';
-
-    // More info: https://github.com/namecheap/ilc/blob/master/docs/ilc_app_interface.md#response-interface-app---ilc
-    res.append('Link', [
-        `<${publicPath}style.css>; rel="stylesheet"`,
-        `<${publicPath}client.js>; rel="fragment-script"`
-    ].join(', '));
+    // More info here https://github.com/namecheap/ilc/blob/master/docs/ilc_app_interface.md
+    const ilcData = ilcSdk.processRequest(req);
+    ilcSdk.processResponse(ilcData, res, {
+        appAssets: {
+            spaBundle: 'client.js',
+            cssBundle: 'style.css'
+        },
+    });
 
     res.send(`<div class="app-container">${reactApp()}</div>`)
 });
